@@ -8,27 +8,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
-
 @Entity
-@Data
 public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Long tb_client_id;
 	@Column(name = "email")
 	private String email;
 
 	public Client() {
 	}
 
-	public Client(Integer id, String email) {
-	
-		this.id = id;
+	public Client(Long id, String email) {
+		this.tb_client_id = id;
 		this.email = email;
 	}
+
+	public Long getId() {
+		return tb_client_id;
+	}
+
+	public void setId(Long id) {
+		this.tb_client_id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	
 	
 }
