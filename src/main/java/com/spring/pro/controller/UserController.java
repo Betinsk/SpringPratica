@@ -45,7 +45,7 @@ public class UserController {
 	
 	
 	 @DeleteMapping("delete/{id}")
-	    public Map <String, Boolean> deleteEmployee(@PathVariable(value = "id") Long tb_client_id)
+	    public Map <String, Boolean> deleteCliente(@PathVariable(value = "id") Long tb_client_id)
 	    throws ResourceNotFoundException {
 	        Client client = userRepository.findById(tb_client_id)
 	            .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + tb_client_id));
