@@ -15,39 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.pro.entities.Client;
+import com.spring.pro.entities.Customer;
 import com.spring.pro.exceptions.ResourceNotFoundException;
-import com.spring.pro.repositories.UserRepository;
+import com.spring.pro.repositories.CustomerRepository;
 
 @RestController
 @RequestMapping
-public class UserController {
+public class CustomerResource {
 
 	@Autowired
-	private UserRepository userRepository;
+	private CustomerRepository userRepository;
 	
-	@RequestMapping
-	public String get() {
-		return "hellow";
-	}
 
-    @RequestMapping(value = "/client", method = RequestMethod.GET)
-    public List<Client> Get() {
+    @RequestMapping(value = "/customer", method = RequestMethod.GET)
+    public List<Customer> Get() {
         return userRepository.findAll();
     }
 	 
-    
+    // @RequestMapping(value = "salvar", method = RequestMethod.POST )
+
 	@PostMapping("/save")
-    public ResponseEntity<Client>save(@RequestBody Client client) {
-		 userRepository.save(client);
-		 return new ResponseEntity<>(client, HttpStatus.OK);
+    public ResponseEntity<Customer>save(@RequestBody Customer customer) {
+		 userRepository.save(customer);
+		 return new ResponseEntity<>(customer, HttpStatus.OK);
      } 
 	
 	
 	 @DeleteMapping("delete/{id}")
 	    public Map <String, Boolean> deleteCliente(@PathVariable(value = "id") Long tb_client_id)
 	    throws ResourceNotFoundException {
-	        Client client = userRepository.findById(tb_client_id)
+	        Customer client = userRepository.findById(tb_client_id)
 	            .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + tb_client_id));
 
 	        userRepository.delete(client);

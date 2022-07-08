@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Client implements Serializable {
+public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -18,10 +18,10 @@ public class Client implements Serializable {
 	@Column(name = "email")
 	private String email;
 
-	public Client() {
+	public Customer() {
 	}
 
-	public Client(Long id, String email) {
+	public Customer(Long id, String email) {
 		this.tb_client_id = id;
 		this.email = email;
 	}
