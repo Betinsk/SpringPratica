@@ -1,12 +1,13 @@
 package com.spring.pro.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customer implements Serializable {
@@ -14,24 +15,28 @@ public class Customer implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long tb_client_id;
-	@Column(name = "email")
+	private Integer id;
 	private String email;
+	private String name;
+	
+	@OneToOne(mappedBy = "customer")
+	private Adress adress;
 
 	public Customer() {
 	}
 
-	public Customer(Long id, String email) {
-		this.tb_client_id = id;
+	public Customer(Integer id, String email, String name) {
+		this.id = id;
 		this.email = email;
+		this.name = name;
 	}
 
-	public Long getId() {
-		return tb_client_id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId(Long id) {
-		this.tb_client_id = id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -40,6 +45,39 @@ public class Customer implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	public Adress getAdress() {
+		return adress;
+	}
+
+	public void setAdress(Adress adress) {
+		this.adress = adress;
 	}
 	
 	
